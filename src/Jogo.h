@@ -13,4 +13,7 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot);
 // Inicia o turn do bot
 void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot);
 
+// Muda o turno 
+void MudarTurno(Jogador *jogador, Jogador *bot);
+
 #endif

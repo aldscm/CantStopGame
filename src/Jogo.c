@@ -163,11 +163,10 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot)
 			{
 	        	continuar = 0;
 	            printf("parar");
-				jogador->turno = NAO_E_MEU_TURNO;	 
-				bot->turno = MEU_TURNO;
-				
+	            
 				// Passa a vez ao Bot
-				IniciarTurnoDoBot(jogador, bot);
+				MudarTurno(jogador, bot);
+				
 	        	break;	
 			}
 	        default: 
@@ -270,17 +269,10 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 			{
 	        	continuar = 0;
 	            printf("parar");
-				
-				bot->turno = NAO_E_MEU_TURNO;	 
-				jogador->turno = MEU_TURNO;
-				
-				// TODO
-				// Criar uma função que recebe os jogadores, atualize o percurso percurso e passe para o jogador seguinte
-				// Remover o a função que criar os percurso de teste
-				// Iniciar o jogo sem fichas e ir atualizando o percurso/percurso avançado
+	            
+				// Passa a vez ao Bot
+				MudarTurno(jogador, bot);
 								
-				// Passa a vez ao jogador
-				IniciarTurnoDoJogador(jogador, bot);
 	        	break;	
 			}
 	        default: 
@@ -291,6 +283,36 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 	    }
 	    
 		fflush(stdin);	
+	}
+}
+
+// Muda o turno 
+void MudarTurno(Jogador *jogador, Jogador *bot) 
+{
+	// Era o turno do jogador, muda para o Bot
+	if (jogador->turno == MEU_TURNO) 
+	{
+		jogador->turno = NAO_E_MEU_TURNO;	 
+		bot->turno = MEU_TURNO;
+		
+		// TODO: Confirmar se isto é assim ou tenho que alterar.
+		
+		// Guarda o percurso avançado como defenitivo
+		jogador->percurso = jogador->percursoAvancado;
+		
+		// Passa a vez ao Bot
+		IniciarTurnoDoBot(jogador, bot);
+	} 
+	else // Era o turn do Bot, muda para o Jogador.
+	{
+		jogador->turno = MEU_TURNO;	 
+		bot->turno = NAO_E_MEU_TURNO;
+		
+		// Guarda o percurso avançado como defenitivo
+		bot->percurso = bot->percursoAvancado;
+		
+		// Passa a vez ao Jogador
+		IniciarTurnoDoJogador(jogador, bot);
 	}
 }
 

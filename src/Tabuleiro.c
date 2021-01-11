@@ -65,11 +65,11 @@ void DesenharFichasDoPercursoAvancado(Jogador *jogador)
 			
 			if (jogador->tipo == JOGADOR_TIPO_HUMANO) 
 			{
-				showRectAt(4 + 8 * (jogador->percurso[i] + jogador->percursoAvancado[i] - 1), 4 + 4 * i,1 ,0);
+				showRectAt(4 + 8 * (jogador->percurso[i] + jogador->percursoAvancado[i] - 1), 4 + 4 * i, 1 ,0);
 			} 
 			else // BOT
 			{
-				showRectAt(7 + 8 * (jogador->percurso[i] + jogador->percursoAvancado[i] - 1), 4 + 4 * i,1 ,0);
+				showRectAt(7 + 8 * (jogador->percurso[i] + jogador->percursoAvancado[i] - 1), 4 + 4 * i, 1 ,0);
 			}
 			
 			resetColor();
