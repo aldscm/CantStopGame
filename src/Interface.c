@@ -132,6 +132,9 @@ int MostrarSubMenuJogo(int *option)
 
 void MostrarDescricao(int *option)
 {
+	// Limpa o ecra
+    system("cls");
+    
     printf("================\n");
     printf("JOGO CAN'T STOP\n");
     printf("================\n\n");
