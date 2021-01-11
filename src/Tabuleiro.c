@@ -1,38 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "Constants.h"
 #include "Estruturas.h"
 #include "Tabuleiro.h"
 
-// Desenha no tabuleiro todas as peças do jogo
+// Desenha o tabuleiro
 void DesenharTabuleiro(Jogador *jogador, Jogador *bot)
 {
-	// Limpa o ecra
-    system("cls");
-   
 	int k;
 	int percurso[11] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-    int topo[11] = {3, 5, 7, 9, 11, 13, 11, 9, 7, 5, 3};   
-    
+    int topo[11] = {3, 5, 7, 9, 11, 13, 11, 9, 7, 5, 3};
+     
     // Desenha o tabuleiro
     for (k = 0; k <= 10; k++)
     {
         DesenharLinha(percurso[k], topo[k]);
     }
-	
-	// Desenha no tabuleiro as fichas para o percurso do jogador
-	DesenharFichasDoPercurso(jogador);
+    
+	// Desenha no tabuleiro as fichas para o percurso do jogador 
+	DesenharFichasDoPercurso(jogador); 
 	DesenharFichasDoPercurso(bot);
-	
-	// Desenha no tabuleiro as fichas para o percurso avancado do jogador que está em jogo
-	if (jogador->turno == MEU_TURNO) 
-	{
-		DesenharFichasDoPercursoAvancado(jogador);	
-	} 
-	else 
-	{
-		DesenharFichasDoPercursoAvancado(bot);	
-	}
 }
 
 // Desenha a linha do tabuleiro
@@ -88,3 +76,4 @@ void DesenharFichasDoPercursoAvancado(Jogador *jogador)
 		}
 	}
 }
+

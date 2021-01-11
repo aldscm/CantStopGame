@@ -7,4 +7,10 @@ void NovoJogo(int *option, Jogador *jogador, Jogador *bot);
 // Define quem é o jogador a iniciar o jogo.
 void PrimeiroAJogar(Jogador *jogador, Jogador *bot);
 
+// Inicia o turno do jogador
+void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot);
+
+// Inicia o turn do bot
+void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot);
+
 #endif

@@ -1,12 +1,6 @@
 #ifndef ESTRUTURAS_H // protectes from multiple including...
 #define ESTRUTURAS_H // ... needs an #endif at bottom
 
-#define MAX_PLAYER_NAME_INPUT 50
-#define JOGADOR_TIPO_HUMANO 1
-#define JOGADOR_TIPO_BOT 2
-#define MEU_TURNO 1
-#define NAO_E_MEU_TURNO 0
-
 typedef struct jogador
 {
     char nome[MAX_PLAYER_NAME_INPUT]; // Tipo de jogador.
