@@ -6,37 +6,6 @@
 #include "Estruturas.h"
 #include "Jogador.h"
 
-// TODO: Isto é para apagar, é apenas para teste
-void CriarPercursosDeTest(Jogador *jogador) 
-{
-    int i;
-    int auxPercurso[11] = {1,0,2,8,2,1,0,0,1,0,2};
-    int auxPercursoAvancado[11] = {0,0,1,0,0,2,0,0,2,0,0};
-    
-    int auxPercursoBot[11] = {1,1,0,5,2,1,0,0,1,0,2};
-    int auxPercursoAvancadoBot[11] = {0,0,1,0,0,2,0,0,2,0,0};
-    
-    for (i = 0; i< 11; i++) 
-	{
-    	if (jogador->tipo == JOGADOR_TIPO_HUMANO) 
-		{
-			jogador->percurso = (int*) realloc(jogador->percurso, (i + 1)* sizeof(int));	
-			jogador->percurso[i] = auxPercurso[i];
-			
-			jogador->percursoAvancado = (int*) realloc(jogador->percursoAvancado, (i + 1)* sizeof(int));
-			jogador->percursoAvancado[i] = auxPercursoAvancado[i];
-    	} 
-    	else 
-		{
-			jogador->percurso = (int*) realloc(jogador->percurso, (i + 1)* sizeof(int));	
-			jogador->percurso[i] = auxPercursoBot[i];
-			
-			jogador->percursoAvancado = (int*) realloc(jogador->percursoAvancado, (i + 1)* sizeof(int));
-			jogador->percursoAvancado[i] = auxPercursoAvancadoBot[i];
-    	}
-    }
-}
-
 // Cria um novo jogador humano
 void NovoJogador(Jogador *jogador)
 {
@@ -45,8 +14,9 @@ void NovoJogador(Jogador *jogador)
        
    	jogador->percurso = (int*)malloc(sizeof(int));
     jogador->percursoAvancado = (int*)malloc(sizeof(int)); 
-	   
-    CriarPercursosDeTest(jogador);
+	
+	// Inicializa os percursos a zero
+    InicializarPercursos(jogador);
 
 	fflush(stdin);
     printf("Nome Jogador: ");
@@ -63,7 +33,46 @@ void NovoBot(Jogador *bot)
     bot->percurso = (int*)malloc(sizeof(int));
     bot->percursoAvancado = (int*)malloc(sizeof(int)); 
        
-    CriarPercursosDeTest(bot);
+	// Inicializa os percursos a zero
+    InicializarPercursos(bot);
   
     strcpy(bot->nome, "Mr.Bot");
 }
+
+// Inicializa os percurso a zero
+void InicializarPercursos(Jogador *jogador) 
+{
+    int i;
+   
+    for (i = 0; i< 11; i++) 
+	{
+		jogador->percurso = (int*) realloc(jogador->percurso, (i + 1)* sizeof(int));	
+		jogador->percurso[i] = 0;
+		
+		jogador->percursoAvancado = (int*) realloc(jogador->percursoAvancado, (i + 1)* sizeof(int));
+		jogador->percursoAvancado[i] = 0;
+    }
+}
+
+// Copiar percurso avançado para percurso
+void CopiarPercursoAvancadoParaPercurso(Jogador *jogador)
+{
+	int i;
+   
+    for (i = 0; i< 11; i++) 
+	{
+		jogador->percurso[i] = jogador->percursoAvancado[i];
+	}
+}
+
+// Faz reset ao percurso avançado
+void ResetPercursoAvancado(Jogador *jogador) 
+{
+	int i;
+   
+    for (i = 0; i< 11; i++) 
+	{
+		jogador->percursoAvancado[i] = 0;
+	}
+}
+

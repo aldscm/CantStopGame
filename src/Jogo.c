@@ -175,8 +175,6 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot)
 				break;
 			}
 	    }
-	    
-		fflush(stdin);	
 	}
 }
 
@@ -204,7 +202,7 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 		
 		// Define a nova matriz de jogadas
 		DefinirJogadas(dados, matrizJogadas);
-		
+			
 		// Desenha o menu de possiveis jogadas
 		setColor(0, 15);			
 		showRectAt(100, 4, 80, 14);
@@ -231,25 +229,34 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 		fflush(stdin);
     	gets(&jogadaSelecionada);
     	fflush(stdin);
-   		   	
-	   	switch(jogadaSelecionada)
+    	
+    	switch(jogadaSelecionada)
 		{
-	        case '1':
-	            bot->percursoAvancado[matrizJogadas[0][0] - 2]++;
+	        case '1': 
+			{
+				bot->percursoAvancado[matrizJogadas[0][0] - 2]++;
 	            bot->percursoAvancado[matrizJogadas[0][1] - 2]++;
 	            break;
-	        case '2':
-	            bot->percursoAvancado[matrizJogadas[1][0] - 2]++;
+			}	            
+	        case '2': 
+			{		
+	        	bot->percursoAvancado[matrizJogadas[1][0] - 2]++;
 	            bot->percursoAvancado[matrizJogadas[1][1] - 2]++;
-	            break;
-	        case '3':
-	            bot->percursoAvancado[matrizJogadas[2][0] - 2]++;
+	            break;	
+			}
+	        case '3': 
+			{
+	        	bot->percursoAvancado[matrizJogadas[2][0] - 2]++;
 	            bot->percursoAvancado[matrizJogadas[2][1] - 2]++;
-	            break;
-	        default:
-	            printf("Error! operator is not correct 1");
+	            break;	
+			}
+	        default: 
+			{
+				printf("Error! operator is not correct 1");
+				break;
+			}
 	    }
-	     
+	       	 
 	    gotoxy(104,14);	
 	    
 	    printf("Quer continuar a jogar (s/n): ");
@@ -281,8 +288,6 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 				break;
 			}
 	    }
-	    
-		fflush(stdin);	
 	}
 }
 
@@ -295,24 +300,29 @@ void MudarTurno(Jogador *jogador, Jogador *bot)
 		jogador->turno = NAO_E_MEU_TURNO;	 
 		bot->turno = MEU_TURNO;
 		
-		// TODO: Confirmar se isto é assim ou tenho que alterar.
-		
 		// Guarda o percurso avançado como defenitivo
-		jogador->percurso = jogador->percursoAvancado;
+		CopiarPercursoAvancadoParaPercurso(jogador);
+		
+		// Faz reset ao percurso avançado
+		// ResetPercursoAvancado(jogador);
 		
 		// Passa a vez ao Bot
 		IniciarTurnoDoBot(jogador, bot);
 	} 
-	else // Era o turn do Bot, muda para o Jogador.
+	else // Era o turno do Bot, muda para o Jogador.
 	{
 		jogador->turno = MEU_TURNO;	 
 		bot->turno = NAO_E_MEU_TURNO;
 		
 		// Guarda o percurso avançado como defenitivo
-		bot->percurso = bot->percursoAvancado;
+		CopiarPercursoAvancadoParaPercurso(bot);
+		
+		// Faz reset ao percurso avançado
+		// ResetPercursoAvancado(bot);
 		
 		// Passa a vez ao Jogador
 		IniciarTurnoDoJogador(jogador, bot);
 	}
 }
+
 
