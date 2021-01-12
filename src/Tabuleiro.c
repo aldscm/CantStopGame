@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "Constants.h"
+#include "Lab.h"
 #include "Estruturas.h"
 #include "Tabuleiro.h"
 

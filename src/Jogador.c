@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "Constants.h"
+#include "Lab.h"
+#include "Funcoes.h"
 #include "Estruturas.h"
 #include "Jogador.h"
 
@@ -78,5 +80,70 @@ void ResetPercursoAvancado(Jogador *jogador)
 	{
 		jogador->percursoAvancado[i] = 0;
 	}
+}
+
+// Seleciona a jogada para o Bot
+char BotSelecionaJogada(Jogador *bot) 
+{
+	gotoxy(104, 14);
+	printf(" %s está a pensar...          ", bot->nome);
+	sleep(2);
+	
+	int jogadaSelecionada = NumAleatorio(1, 3);
+	
+	if (jogadaSelecionada == 1) 
+	{
+		gotoxy(104, 14);
+		printf(" %s escolhe a opcao 1.", bot->nome);
+		sleep(2);
+		return '1';	
+	}
+
+	if (jogadaSelecionada == 2) 
+	{
+		gotoxy(104, 14);
+		printf(" %s escolhe a opcao 2.\n", bot->nome);
+		sleep(2);
+		return '2';	
+	}
+	
+	if (jogadaSelecionada == 3) 
+	{
+		gotoxy(104, 14);
+		printf(" %s escolhe a opcao 3.\n", bot->nome);
+		sleep(2);
+		return '3';	
+	}
+}
+
+// Decide o Bot continua a jogar ou finaliza o turno
+char BotDecideSeContinuaAJogar(Jogador *bot) 
+{
+	int s, n;
+	
+	gotoxy(104, 14);
+	printf(" %s está a pensar...          ", bot->nome);
+	sleep(2);
+	
+	do 
+	{
+		s = NumAleatorio(1, 5);
+		n = NumAleatorio(1, 5);
+	} while(s == n);
+	
+	if (s > n) 
+	{
+		gotoxy(104, 14);
+		printf(" %s decide continuar...", bot->nome);
+		sleep(2);
+		return 's';	
+	} 
+	else 
+	{
+		gotoxy(104, 14);
+		printf(" %s decide parar por aqui...", bot->nome);
+		sleep(2);
+		return 'n';	
+	} 
 }
 

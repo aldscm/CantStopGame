@@ -16,4 +16,10 @@ void CopiarPercursoAvancadoParaPercurso(Jogador *jogador);
 // Faz reset ao percurso avançado
 void ResetPercursoAvancado(Jogador *jogador);
 
+// Seleciona a jogada para o Bot
+char BotSelecionaJogada(Jogador *bot);
+
+// Decide se o Bot continua a jogar ou finaliza o turno
+char BotDecideSeContinuaAJogar(Jogador *bot);
+
 #endif

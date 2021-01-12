@@ -3,6 +3,7 @@
 
 #include "Constants.h"
 #include "Interface.h"
+#include "Lab.h"
 #include "Estruturas.h"
 #include "Jogador.h"
 #include "Funcoes.h"
@@ -30,7 +31,7 @@ void NovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados, int matri
     }
 }
 
-// Define quem ï¿½ o jogador a iniciar o jogo.
+// Define quem é o jogador a iniciar o jogo.
 void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
 {
     int dadosJogador[NUMERO_DE_DADOS], resultadoDadosJogador = 0;
@@ -71,7 +72,7 @@ void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
     }
 }
 
-// Lanï¿½a os dados
+// Lança os dados
 void LancarDados(int *dados, int numeroTotalDeDados)
 {
     int i;
@@ -86,15 +87,15 @@ void LancarDados(int *dados, int numeroTotalDeDados)
 void DefinirJogadas(int *dados, int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
 {
 	// dados A, B, C e D. 
-	// Associaï¿½ï¿½o A + B e C + D na posiï¿½ï¿½o 0
+	// Associação A + B e C + D na posição 0
 	matrizJogadas[0][0] = dados[0] + dados[1];
 	matrizJogadas[0][1] = dados[2] + dados[3];
 	
-	// Associaï¿½ï¿½o A + C e B + D na posiï¿½ï¿½o 0	
+	// Associação A + C e B + D na posição 0	
 	matrizJogadas[1][0] = dados[0] + dados[2];
 	matrizJogadas[1][1] = dados[1] + dados[3];
 	
-	// Associaï¿½ï¿½o A + D e B + C na posiï¿½ï¿½o 0	
+	// Associação A + D e B + C na posição 0	
 	matrizJogadas[2][0] = dados[0] + dados[3];
 	matrizJogadas[2][1] = dados[1] + dados[2];
 }
@@ -115,7 +116,7 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matr
 		// Desenha no tabuleiro as fichas para o percurso avancado do jogador
 		DesenharFichasDoPercursoAvancado(jogador);	 
 					
-		// Lanï¿½a os dados
+		// Lança os dados
 		LancarDados(dados, NUMERO_DE_DADOS);
 		
 		// Define a nova matriz de jogadas
@@ -141,50 +142,62 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matr
 		gotoxy(104, 12);
 		printf(" 3- Avancar em %d e %d ", matrizJogadas[2][0], matrizJogadas[2][1]);
 		resetColor();
-		gotoxy(104, 14);	
 		
-		printf("Insira 1 a 3: ");
-		fflush(stdin);
-    	gets(&jogadaSelecionada);
-    	fflush(stdin);
+    	do 
+		{
+			gotoxy(104,14);	
+			printf("Insira 1 a 3: ");
+			fflush(stdin);
+	    	gets(&jogadaSelecionada);
+	    	fflush(stdin);
+		} while(jogadaSelecionada != '1' && jogadaSelecionada != '2' && jogadaSelecionada != '3');
    		   	
 	   	switch(jogadaSelecionada)
 		{
 	        case '1':
-	            jogador->percursoAvancado[matrizJogadas[0][0] - 2]++;
+        	{
+        		jogador->percursoAvancado[matrizJogadas[0][0] - 2]++;
 	            jogador->percursoAvancado[matrizJogadas[0][1] - 2]++;
 	            break;
+			}
 	        case '2':
-	            jogador->percursoAvancado[matrizJogadas[1][0] - 2]++;
+			{
+				jogador->percursoAvancado[matrizJogadas[1][0] - 2]++;
 	            jogador->percursoAvancado[matrizJogadas[1][1] - 2]++;
 	            break;
-	        case '3':
-	            jogador->percursoAvancado[matrizJogadas[2][0] - 2]++;
+			}
+	        case '3': 
+			{
+	        	jogador->percursoAvancado[matrizJogadas[2][0] - 2]++;
 	            jogador->percursoAvancado[matrizJogadas[2][1] - 2]++;
-	            break;
-	        default:
-	            printf("Error! operator is not correct 1");
+	            break;;
+			}
+	        default: 
+			{
+				printf("Opcao invalida..");
+				break;
+			}
 	    }
 	     
-	    gotoxy(104,14);	
-	    
-	    printf("Quer continuar a jogar (s/n): ");
-	    fflush(stdin);
-    	gets(&escolha);
-    	fflush(stdin);
-    	
+	    do 
+		{
+			gotoxy(104,14);	
+	    	printf("Quer continuar a jogar (s/n): ");
+		    fflush(stdin);
+	    	gets(&escolha);
+	    	fflush(stdin);
+		} while(escolha != 's' && escolha != 'n');
+	        	
 		switch(escolha)
 		{
 	        case 's': 
 			{
 	        	continuar = 1;
-	            printf("continuar");
 				break;
 			}
 	        case 'n': 
 			{
 	        	continuar = 0;
-	            printf("parar");
 	            
 				// Passa a vez ao Bot
 				MudarTurno(jogador, bot, dados, matrizJogadas);
@@ -193,7 +206,7 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matr
 			}
 	        default: 
 			{
-	        	printf("Error! operator is not correct 2");
+	        	printf("Escolha invalida..");
 				break;
 			}
 	    }
@@ -216,7 +229,7 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot, int *dados,  int matrizJo
 		// Desenha no tabuleiro as fichas para o percurso avancado do bot
 		DesenharFichasDoPercursoAvancado(bot);	 
 					
-		// Lanï¿½a os dados
+		// Lança os dados
 		LancarDados(dados, NUMERO_DE_DADOS);
 		
 		// Define a nova matriz de jogadas
@@ -242,13 +255,10 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot, int *dados,  int matrizJo
 		gotoxy(104, 12);
 		printf(" 3- Avancar em %d e %d ", matrizJogadas[2][0], matrizJogadas[2][1]);
 		resetColor();
-		gotoxy(104, 14);	
 		
-		printf("Insira 1 a 3: ");
-		fflush(stdin);
-    	gets(&jogadaSelecionada);
-    	fflush(stdin);
-    	
+		// O bot vai selecionar uma das jogadas
+		jogadaSelecionada = BotSelecionaJogada(bot);
+		
     	switch(jogadaSelecionada)
 		{
 	        case '1': 
@@ -271,39 +281,32 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot, int *dados,  int matrizJo
 			}
 	        default: 
 			{
-				printf("Error! operator is not correct 1");
+				printf("Opcao invalida..");
 				break;
 			}
 	    }
-	       	 
-	    gotoxy(104,14);	
 	    
-	    printf("Quer continuar a jogar (s/n): ");
-	    fflush(stdin);
-    	gets(&escolha);
-    	fflush(stdin);
-    	
+		// O bot vai decidir se continua ou para por aqui   	 
+	    escolha = BotDecideSeContinuaAJogar(bot);
+	    
 		switch(escolha)
 		{
 	        case 's': 
 			{
 	        	continuar = 1;
-	            printf("continuar");
 				break;
 			}
 	        case 'n': 
 			{
 	        	continuar = 0;
-	            printf("parar");
 	            
 				// Passa a vez ao Bot
-				MudarTurno(jogador, bot, dados, matrizJogadas);
-								
+				MudarTurno(jogador, bot, dados, matrizJogadas);	
 	        	break;	
 			}
 	        default: 
 			{
-	        	printf("Error! operator is not correct 2");
+	        	printf("");
 				break;
 			}
 	    }
@@ -319,10 +322,10 @@ void MudarTurno(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[M
 		jogador->turno = NAO_E_MEU_TURNO;	 
 		bot->turno = MEU_TURNO;
 		
-		// Guarda o percurso avanï¿½ado como defenitivo
+		// Guarda o percurso avançado como defenitivo
 		CopiarPercursoAvancadoParaPercurso(jogador);
 		
-		// Faz reset ao percurso avanï¿½ado
+		// Faz reset ao percurso avançado
 		ResetPercursoAvancado(jogador);
 		
 		// Passa a vez ao Bot
@@ -333,10 +336,10 @@ void MudarTurno(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[M
 		jogador->turno = MEU_TURNO;	 
 		bot->turno = NAO_E_MEU_TURNO;
 		
-		// Guarda o percurso avanï¿½ado como defenitivo
+		// Guarda o percurso avançado como defenitivo
 		CopiarPercursoAvancadoParaPercurso(bot);
 		
-		// Faz reset ao percurso avanï¿½ado
+		// Faz reset ao percurso avançado
 		ResetPercursoAvancado(bot);
 		
 		// Passa a vez ao Jogador
