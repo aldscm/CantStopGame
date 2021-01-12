@@ -10,11 +10,8 @@
 #include "Jogo.h"
 
 // Iniciar um novo jogo
-void NovoJogo(int *option, Jogador *jogador, Jogador *bot)
+void NovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados, int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA])
 {   
-	int dados[NUMERO_DE_DADOS];	
-	int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA];
-
     MostrarTituloJogo();
     NovoJogador(jogador);
     NovoBot(bot);
@@ -24,11 +21,11 @@ void NovoJogo(int *option, Jogador *jogador, Jogador *bot)
     {
 		if (jogador->turno == MEU_TURNO) 
 		{
-			IniciarTurnoDoJogador(jogador, bot);	
+			IniciarTurnoDoJogador(jogador, bot, dados, matrizJogadas);	
 		} 
 		else 
 		{
-			IniciarTurnoDoBot(jogador, bot);	
+			IniciarTurnoDoBot(jogador, bot, dados, matrizJogadas);	
 		}
     }
 }
@@ -75,11 +72,8 @@ void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
 }
 
 // Inicia o turno do jogador
-void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot) 
+void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
 {
-	int dados[NUMERO_DE_DADOS];	
-	int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA];
-	
 	char jogadaSelecionada, escolha;
 	int continuar = 1;
 	
@@ -165,7 +159,7 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot)
 	            printf("parar");
 	            
 				// Passa a vez ao Bot
-				MudarTurno(jogador, bot);
+				MudarTurno(jogador, bot, dados, matrizJogadas);
 				
 	        	break;	
 			}
@@ -179,11 +173,8 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot)
 }
 
 // Iniciar o turno do Bot
-void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot) 
+void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
 {
-	int dados[NUMERO_DE_DADOS];	
-	int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA];
-	
 	char jogadaSelecionada, escolha;
 	int continuar = 1;
 	
@@ -278,7 +269,7 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 	            printf("parar");
 	            
 				// Passa a vez ao Bot
-				MudarTurno(jogador, bot);
+				MudarTurno(jogador, bot, dados, matrizJogadas);
 								
 	        	break;	
 			}
@@ -292,7 +283,7 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot)
 }
 
 // Muda o turno 
-void MudarTurno(Jogador *jogador, Jogador *bot) 
+void MudarTurno(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
 {
 	// Era o turno do jogador, muda para o Bot
 	if (jogador->turno == MEU_TURNO) 
@@ -304,10 +295,10 @@ void MudarTurno(Jogador *jogador, Jogador *bot)
 		CopiarPercursoAvancadoParaPercurso(jogador);
 		
 		// Faz reset ao percurso avançado
-		// ResetPercursoAvancado(jogador);
+		ResetPercursoAvancado(jogador);
 		
 		// Passa a vez ao Bot
-		IniciarTurnoDoBot(jogador, bot);
+		IniciarTurnoDoBot(jogador, bot, dados, matrizJogadas);
 	} 
 	else // Era o turno do Bot, muda para o Jogador.
 	{
@@ -318,10 +309,10 @@ void MudarTurno(Jogador *jogador, Jogador *bot)
 		CopiarPercursoAvancadoParaPercurso(bot);
 		
 		// Faz reset ao percurso avançado
-		// ResetPercursoAvancado(bot);
+		ResetPercursoAvancado(bot);
 		
 		// Passa a vez ao Jogador
-		IniciarTurnoDoJogador(jogador, bot);
+		IniciarTurnoDoJogador(jogador, bot, dados, matrizJogadas);
 	}
 }
 

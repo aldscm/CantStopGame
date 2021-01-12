@@ -61,6 +61,10 @@ void CopiarPercursoAvancadoParaPercurso(Jogador *jogador)
    
     for (i = 0; i< 11; i++) 
 	{
+		// TODO: Não pode ser assim
+		// Como resetamos o percursoAvançado a cada mudança de turno, no segundo turno o vetor de percursoAvançado começa do zero.
+		// Se copiar direto, o vetor percurso vai perder os dados que tinha e vai sempre "começar do zero"
+		// Temo que atualizar o vetor percurso com as novas posições e não copiar direto
 		jogador->percurso[i] = jogador->percursoAvancado[i];
 	}
 }
