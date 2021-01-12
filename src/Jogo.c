@@ -30,7 +30,7 @@ void NovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados, int matri
     }
 }
 
-// Define quem é o jogador a iniciar o jogo.
+// Define quem ï¿½ o jogador a iniciar o jogo.
 void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
 {
     int dadosJogador[NUMERO_DE_DADOS], resultadoDadosJogador = 0;
@@ -71,6 +71,34 @@ void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
     }
 }
 
+// Lanï¿½a os dados
+void LancarDados(int *dados, int numeroTotalDeDados)
+{
+    int i;
+
+    for (i = 0; i < numeroTotalDeDados; i++)
+    {
+        dados[i] = NumAleatorio(DADO_MIN_NUMBER, DADO_MAX_NUMBER);
+    }
+}
+
+// Define as possivies jogadas do jogador.
+void DefinirJogadas(int *dados, int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
+{
+	// dados A, B, C e D. 
+	// Associaï¿½ï¿½o A + B e C + D na posiï¿½ï¿½o 0
+	matrizJogadas[0][0] = dados[0] + dados[1];
+	matrizJogadas[0][1] = dados[2] + dados[3];
+	
+	// Associaï¿½ï¿½o A + C e B + D na posiï¿½ï¿½o 0	
+	matrizJogadas[1][0] = dados[0] + dados[2];
+	matrizJogadas[1][1] = dados[1] + dados[3];
+	
+	// Associaï¿½ï¿½o A + D e B + C na posiï¿½ï¿½o 0	
+	matrizJogadas[2][0] = dados[0] + dados[3];
+	matrizJogadas[2][1] = dados[1] + dados[2];
+}
+
 // Inicia o turno do jogador
 void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
 {
@@ -87,7 +115,7 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matr
 		// Desenha no tabuleiro as fichas para o percurso avancado do jogador
 		DesenharFichasDoPercursoAvancado(jogador);	 
 					
-		// Lança os dados
+		// Lanï¿½a os dados
 		LancarDados(dados, NUMERO_DE_DADOS);
 		
 		// Define a nova matriz de jogadas
@@ -188,7 +216,7 @@ void IniciarTurnoDoBot(Jogador *jogador, Jogador *bot, int *dados,  int matrizJo
 		// Desenha no tabuleiro as fichas para o percurso avancado do bot
 		DesenharFichasDoPercursoAvancado(bot);	 
 					
-		// Lança os dados
+		// Lanï¿½a os dados
 		LancarDados(dados, NUMERO_DE_DADOS);
 		
 		// Define a nova matriz de jogadas
@@ -291,10 +319,10 @@ void MudarTurno(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[M
 		jogador->turno = NAO_E_MEU_TURNO;	 
 		bot->turno = MEU_TURNO;
 		
-		// Guarda o percurso avançado como defenitivo
+		// Guarda o percurso avanï¿½ado como defenitivo
 		CopiarPercursoAvancadoParaPercurso(jogador);
 		
-		// Faz reset ao percurso avançado
+		// Faz reset ao percurso avanï¿½ado
 		ResetPercursoAvancado(jogador);
 		
 		// Passa a vez ao Bot
@@ -305,10 +333,10 @@ void MudarTurno(Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[M
 		jogador->turno = MEU_TURNO;	 
 		bot->turno = NAO_E_MEU_TURNO;
 		
-		// Guarda o percurso avançado como defenitivo
+		// Guarda o percurso avanï¿½ado como defenitivo
 		CopiarPercursoAvancadoParaPercurso(bot);
 		
-		// Faz reset ao percurso avançado
+		// Faz reset ao percurso avanï¿½ado
 		ResetPercursoAvancado(bot);
 		
 		// Passa a vez ao Jogador
