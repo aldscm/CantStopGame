@@ -1,6 +1,13 @@
 #ifndef JOGO_H // protectes from multiple including...
 #define JOGO_H // ... needs an #endif at bottom
 
+#include "Lab.h"
+#include "Constants.h"
+#include "Funcoes.h"
+#include "Interface.h"
+#include "Jogador.h"
+#include "Tabuleiro.h"
+
 // Iniciar um novo jogo
 void NovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados,  int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]);
 

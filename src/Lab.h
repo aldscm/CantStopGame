@@ -1,6 +1,11 @@
 #ifndef LAB_H // protectes from multiple including...
 #define LAB_H // ... needs an #endif at bottom
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <Windows.h>
+#include <locale.h>
+
 //changes both foreground and background colors
 void setColor(int foreGround, int backGround);
 

@@ -1,10 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <Windows.h>
-#include <locale.h>
-
 #include "Lab.h"
 
 #define false	0

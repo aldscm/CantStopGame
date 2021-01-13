@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Constants.h"
-#include "Interface.h"
-#include "Estruturas.h"
 #include "Funcoes.h"
 
 // Gera um número aleatórios

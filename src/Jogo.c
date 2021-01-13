@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Constants.h"
-#include "Interface.h"
-#include "Lab.h"
-#include "Estruturas.h"
-#include "Jogador.h"
-#include "Funcoes.h"
-#include "Tabuleiro.h"
 #include "Jogo.h"
 
 // Iniciar um novo jogo

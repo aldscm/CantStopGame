@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Constants.h"
-#include "Lab.h"
-#include "Funcoes.h"
-#include "Estruturas.h"
 #include "Jogador.h"
 
 // Cria um novo jogador humano

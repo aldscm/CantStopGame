@@ -4,8 +4,8 @@
 #include <unistd.h> // Para usar o sleep() no bot
 
 #include "Constants.h"
-#include "Estruturas.h"
 #include "Interface.h"
+#include "Jogador.h"
 #include "Jogo.h"
 
 int main() {

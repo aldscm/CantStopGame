@@ -1,6 +1,19 @@
 #ifndef JOGADOR_H // protectes from multiple including...
 #define JOGADOR_H // ... needs an #endif at bottom
 
+#include "Lab.h"
+#include "Constants.h"
+#include "Funcoes.h"
+
+typedef struct jogador
+{
+    char nome[MAX_PLAYER_NAME_INPUT]; // Tipo de jogador.
+    int tipo;
+    int *percurso; // Array que guarda a o percurso do jogador
+    int *percursoAvancado; // Array que guarda o percurso avançado a cada jogada 
+	int turno; // 1: É o meu turno | 0: Não é o meu turno.
+} Jogador;
+
 // Cria um novo jogador humano
 void NovoJogador(Jogador *jogador);
 

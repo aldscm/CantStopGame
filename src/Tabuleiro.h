@@ -1,6 +1,10 @@
 #ifndef TABULEIRO_H // protectes from multiple including...
 #define TABULEIRO_H // ... needs an #endif at bottom
 
+#include "Lab.h"
+#include "Constants.h"
+#include "Jogador.h"
+
 // Desenha tabuleiro
 void DesenharTabuleiro(Jogador *jogador, Jogador *bot);
 
