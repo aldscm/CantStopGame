@@ -33,7 +33,7 @@ void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
     system("cls");
     MostrarTituloJogo();
 
-    printf("A lancar os dados...\n\n");
+    printf(" A lancar os dados...\n\n");
 
     do
     {
@@ -46,22 +46,22 @@ void PrimeiroAJogar(Jogador *jogador, Jogador *bot)
         // Continua a lancar ate existir um vencedor
     } while (resultadoDadosJogador == resultadoDadosBot);
 
-    printf("%s lancou %d, %d, %d e %d.\n\n", jogador->nome, dadosJogador[0], dadosJogador[1], dadosJogador[2], dadosJogador[3]);
-    printf("%s lancou %d, %d, %d e %d.\n\n", bot->nome, dadosBot[0], dadosBot[1], dadosBot[2], dadosBot[3]);
+    printf(" %s lancou %d, %d, %d e %d.\n\n", jogador->nome, dadosJogador[0], dadosJogador[1], dadosJogador[2], dadosJogador[3]);
+    printf(" %s lancou %d, %d, %d e %d.\n\n", bot->nome, dadosBot[0], dadosBot[1], dadosBot[2], dadosBot[3]);
 
     if (resultadoDadosJogador > resultadoDadosBot)
     {
         jogador->turno = MEU_TURNO;
         bot->turno = NAO_E_MEU_TURNO;
 
-        printf("%s lancou um total de %d, joga primeiro!!\n\n", jogador->nome, resultadoDadosJogador);
+        printf(" %s lancou um total de %d, joga primeiro!!\n\n", jogador->nome, resultadoDadosJogador);
     }
     else
     {
         jogador->turno = NAO_E_MEU_TURNO;
         bot->turno = MEU_TURNO;
 
-        printf("%s lancou um total de %d, joga primeiro!!\n", bot->nome, resultadoDadosBot);
+        printf(" %s lancou um total de %d, joga primeiro!!\n", bot->nome, resultadoDadosBot);
     }
 }
 

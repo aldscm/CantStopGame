@@ -17,7 +17,7 @@ void NovoJogador(Jogador *jogador)
     InicializarPercursos(jogador);
 
 	fflush(stdin);
-    printf("Nome Jogador: ");
+    printf(" Nome Jogador: ");
     fflush(stdin);
     gets(jogador->nome);
 }
