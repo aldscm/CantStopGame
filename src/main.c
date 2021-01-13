@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "Interface.h"
 #include "Jogador.h"
+#include "Funcoes.h"
 #include "Jogo.h"
 
 int main() {
@@ -31,6 +32,15 @@ int main() {
             case 1:
             {
                 NovoJogo(&option, &jogador, &bot, dados, matrizJogadas);
+                break;
+            }
+            // Carregar jogo
+            case 2:
+            {
+            	
+                
+                system("pause");
+                
                 break;
             }
             // Descrição do jogo

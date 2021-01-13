@@ -22,6 +22,10 @@ void NovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados, int matri
 			IniciarTurnoDoBot(jogador, bot, dados, matrizJogadas);	
 		}
     }
+    
+    // Reseta a variavel para o seu valor por defeito.(sem opções selecionadas)
+    // Com isto quando o jogador decide gravar e sair para o menu principal o variavél "option" fica com o valor correto.
+    *option = 0;
 }
 
 // Define quem é o jogador a iniciar o jogo.
@@ -175,11 +179,11 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matr
 	    do 
 		{
 			gotoxy(104,14);	
-	    	printf("Quer continuar a jogar (s/n): ");
+	    	printf("Quer continuar a jogar (s/n) ou gravar e sair (g): ");
 		    fflush(stdin);
 	    	gets(&escolha);
 	    	fflush(stdin);
-		} while(escolha != 's' && escolha != 'n');
+		} while(escolha != 's' && escolha != 'n' && escolha != 'g') ;
 	        	
 		switch(escolha)
 		{
@@ -196,6 +200,12 @@ void IniciarTurnoDoJogador(Jogador *jogador, Jogador *bot, int *dados,  int matr
 				MudarTurno(jogador, bot, dados, matrizJogadas);
 				
 	        	break;	
+			}
+			case 'g':
+			{
+				// Gravar o jogo e sair para o menu principal
+				GravarJogo(jogador, bot);
+				break;
 			}
 	        default: 
 			{
