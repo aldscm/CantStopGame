@@ -54,3 +54,6 @@ dkms.conf
 # Others
 *.layout
 *.win
+
+# Text files
+*.txt
