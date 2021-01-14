@@ -4,28 +4,28 @@
 #include "Jogo.h"
 
 // Iniciar um novo jogo
-void NovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados, int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA])
+int IniciarNovoJogo(int *option, Jogador *jogador, Jogador *bot, int *dados, int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA])
 {   
     MostrarTituloJogo();
     NovoJogador(jogador);
     NovoBot(bot);
     PrimeiroAJogar(jogador, bot);
     
-    if (MostrarSubMenuJogo(option) == 1)
-    {
-		if (jogador->turno == MEU_TURNO) 
-		{
-			IniciarTurnoDoJogador(jogador, bot, dados, matrizJogadas);	
-		} 
-		else 
-		{
-			IniciarTurnoDoBot(jogador, bot, dados, matrizJogadas);	
-		}
-    }
-    
-    // Reseta a variavel para o seu valor por defeito.(sem opções selecionadas)
-    // Com isto quando o jogador decide gravar e sair para o menu principal o variavél "option" fica com o valor correto.
-    *option = 0;
+    // Retorna 1 se for para continuar ou 0 para sair
+    return MostrarSubMenuJogo();
+}
+
+// Começa o jogo
+void Jogar(Jogador *jogador, Jogador *bot, int *dados, int matrizJogadas[MATRIZ_JOGADAS_LINHA][MATRIZ_JOGADAS_COLUNA]) 
+{
+	if (jogador->turno == MEU_TURNO) 
+	{
+		IniciarTurnoDoJogador(jogador, bot, dados, matrizJogadas);	
+	} 
+	else 
+	{
+		IniciarTurnoDoBot(jogador, bot, dados, matrizJogadas);	
+	}
 }
 
 // Define quem é o jogador a iniciar o jogo.

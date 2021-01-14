@@ -31,21 +31,45 @@ int main() {
             // Novo jogo
             case 1:
             {
-                NovoJogo(&option, &jogador, &bot, dados, matrizJogadas);
+                if (IniciarNovoJogo(&option, &jogador, &bot, dados, matrizJogadas) == 1) 
+				{
+					// Começa o jogo
+                	Jogar(&jogador, &bot, dados, matrizJogadas);	
+				} 
+			
+				// Renicia a variavel para manter no menu principal
+				option = 0;
                 break;
             }
             // Carregar jogo
             case 2:
             {
-                CarregarJogo(&jogador, &bot);
-                // TODO: Adicionar o restante código
-                system("pause");
+            	// Carrega os dados do ficheiro
+                if (CarregarJogo(&jogador, &bot) == 1) 
+				{
+					// Retoma o jogo
+                	Jogar(&jogador, &bot, dados, matrizJogadas);	
+				}
+				
+      			// Renicia a variavel para manter no menu principal
+                option = 0;
                 break;
             }
             // Descrição do jogo
             case 3:
             {
-                MostrarDescricao(&option);
+                if (MostrarDescricao() == 1) 
+				{
+					// Renicia a variavel para manter no menu principal
+					option = 0;
+				} 
+				else 
+				{
+					// É para sair da aplicação
+					system("cls");
+					option = 4;
+				}
+				
                 break;
             }
             // Sair
@@ -60,11 +84,12 @@ int main() {
 				flagSair = 1;
 			    exit(1);
             }
-
             default:
                 break;
         }
-    } while (flagSair == 0); // Só sai do loop quando o utilizador selecionar a opção 4 - Sair.
+        
+     // Só sai do loop quando o utilizador selecionar a opção 4 - Sair.
+    } while (flagSair == 0);
     
 	return 1;
 }

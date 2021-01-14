@@ -55,39 +55,27 @@ void AdicionarDadosAoFicheiro(FILE *ficheiro, Jogador *jogador)
 	int i;
 	
 	// Adiciona o nome do jogador
-	fprintf(ficheiro, "Nome: %s\n", jogador->nome);
+	fprintf(ficheiro, "%s\n", jogador->nome);
 	// Adiciona o tipo do jogador
-	fprintf(ficheiro, "Tipo: %d\n", jogador->tipo);
+	fprintf(ficheiro, "%d\n", jogador->tipo);
 	// Adiciona o turno do jogador
-	fprintf(ficheiro, "Turno: %d\n", jogador->turno);
+	fprintf(ficheiro, "%d\n", jogador->turno);
 	
-	// Adiciona o percurso do jogador
-	//	fprintf(ficheiro, "Percurso:");
-	
+	// Adiciona o percurso do jogador	
 	for(i = 0; i < ARRAY_PERCURSO_SIZE; i++ ) 
 	{
-		// fprintf(ficheiro, " %d", jogador->percurso[i]);
 		fprintf(ficheiro, "%d\n", jogador->percurso[i]);
 	}
-	
-	// Muda o cursor para a proxima linha do ficheiro
-	//	fprintf(ficheiro, "\n");
-	
+		
 	// Adiciona o percursoAvancado do jogador
-	// fprintf(ficheiro, "Percurso Avancado:");
-	
 	for(i = 0; i < ARRAY_PERCURSO_SIZE; i++ ) 
 	{
-		// fprintf(ficheiro, " %d", jogador->percursoAvancado[i]);
 		fprintf(ficheiro, "%d\n", jogador->percursoAvancado[i]);
 	}
-	
-	// Muda o cursor para a proxima linha do ficheiro
-	// fprintf(ficheiro, "\n");
 }
 
 // Carregar os dados do jogo do ficheiro
-void CarregarJogo(Jogador *jogador, Jogador *bot) 
+int CarregarJogo(Jogador *jogador, Jogador *bot) 
 {
 	FILE *ficheiro;
 	
@@ -99,10 +87,10 @@ void CarregarJogo(Jogador *jogador, Jogador *bot)
 	ficheiro = fopen("savedgame.txt","r");
 
 	if(ficheiro == NULL)
-	{
+	{	    
 		printf("\n ERRO: Nao e possivel abrir o ficheiro <savedgame.txt>.\n\n");
 		system("pause");
-		exit(1);	
+		return 0;	
 	}
 	
 	// Le os dados do jogador para a estrutura
@@ -113,6 +101,9 @@ void CarregarJogo(Jogador *jogador, Jogador *bot)
 	
 	// Fecha o ficheiro
 	fclose(ficheiro);
+	
+	// Ok
+	return 1;
 }
 
 // Lê os dados do ficheiro para a estrutura
@@ -121,39 +112,23 @@ void LerDadosDoFicheiro(FILE *ficheiro, Jogador *jogador)
 	int i;
 	
 	// Adiciona o nome do jogador
-	fscanf(ficheiro, "Nome:%s", jogador->nome);
+	fscanf(ficheiro, "%[^\n]s\n", jogador->nome);
 	// Adiciona o tipo do jogador
-	fscanf(ficheiro, "Tipo:%d", jogador->tipo);
+	fscanf(ficheiro, "%d\n", &jogador->tipo);
 	// Adiciona o turno do jogador
-	fscanf(ficheiro, "Turno:%d", jogador->turno);
-	
-	printf("Nome: %s\n", jogador->nome);
-	printf("Tipo: %s\n", jogador->tipo);
-	printf("Turno: %s\n", jogador->turno);
+	fscanf(ficheiro, "%d\n", &jogador->turno);
 		
-	// Le o percurso par a estrutura
+	// Le o percurso para a estrutura
 	for(i = 0; i < ARRAY_PERCURSO_SIZE; i++ ) 
 	{
-		int x;
-		fscanf(ficheiro, "%d", &x);
-		printf("%d: %d\n", i+1, x);
-		
-		// fscanf(ficheiro, "%d", jogador->percurso[i]);
+		fscanf(ficheiro, "%d\n", &jogador->percurso[i]);
 	}
 	
-	printf("\n");
-	
-	// Le o percurso avancado par a estrutura
+	// Le o percurso avancado para a estrutura
 	for(i = 0; i < ARRAY_PERCURSO_SIZE; i++) 
 	{
-		int x;
-		fscanf(ficheiro, "%d", &x);
-		printf("%d: %d\n", i+1, x);
-		
-		// fscanf(ficheiro, "%d", jogador->percursoAvancado[i]); 
+		fscanf(ficheiro, "%d\n", &jogador->percursoAvancado[i]); 
 	}
-	
-	printf("\n");
 }
 
 

@@ -17,7 +17,7 @@ void GravarJogo(Jogador *jogador, Jogador *bot);
 void AdicionarDadosAoFicheiro(FILE *file, Jogador *jogador);
 
 // Carregar os dados do jogo do ficheiro
-void CarregarJogo(Jogador *jogador, Jogador *bot);
+int CarregarJogo(Jogador *jogador, Jogador *bot);
 
 // Lê os dados do ficheiro para a estrutura
 void LerDadosDoFicheiro(FILE *ficheiro, Jogador *jogador);

@@ -49,7 +49,7 @@ void InicializarPercursos(Jogador *jogador)
     }
 }
 
-// Copiar percurso avanï¿½ado para percurso
+// Copiar percurso avançado para percurso
 void CopiarPercursoAvancadoParaPercurso(Jogador *jogador)
 {
 	int i;
@@ -60,7 +60,7 @@ void CopiarPercursoAvancadoParaPercurso(Jogador *jogador)
 	}
 }
 
-// Faz reset ao percurso avanï¿½ado
+// Faz reset ao percurso avançado
 void ResetPercursoAvancado(Jogador *jogador)
 {
 	int i;

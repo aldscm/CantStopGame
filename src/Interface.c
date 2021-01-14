@@ -45,7 +45,7 @@ void MostrarMenu(int *option)
 }
 
 // Mostra o submenu dentro da opção 1 - Novo jogo
-void MostrarSubMenu(int *option)
+int MostrarSubMenu()
 {
     int flag = 0, subMenu = 0;
 
@@ -72,16 +72,12 @@ void MostrarSubMenu(int *option)
         // Só sai do loop se a opção for válida.
     } while (flag != 0);
 
-    if (subMenu == 2)
+    if (subMenu == 1)
     {
-    	// Atribui o valor 4 para entrar no case 4 no main.c e sair da applicação
-        *option = 4;
+    	return 1;
     } 
-	else
-	{
-		// Reseta a variavel para o seu valor por defeito.(sem opções selecionadas)
-		*option = 0;	
-	} 
+	
+	return 0;
 }
 
 // Mostra o titulo no jogo dentro da opção 1 - Novo jogo
@@ -93,7 +89,7 @@ void MostrarTituloJogo()
 }
 
 // Mostra a descrição do jogo. opção 3 - Descricao do Jogo
-int MostrarSubMenuJogo(int *option)
+int MostrarSubMenuJogo()
 {
     int flag = 0, subMenu = 0;
 
@@ -118,19 +114,15 @@ int MostrarSubMenuJogo(int *option)
         }
     } while (flag != 0);
 
-    if (subMenu == 1)
+    if (subMenu == 2)
     {
-        *option = 0; // Mostar menu principal
-    }
-    else if (subMenu == 2)
-    {
-        return 1;
+    	return 1;
     }
     
     return 0;
 }
 
-void MostrarDescricao(int *option)
+int MostrarDescricao()
 {
 	// Limpa o ecra
     system("cls");
@@ -176,6 +168,6 @@ void MostrarDescricao(int *option)
     printf(" -----------\n\n");
     printf(" O primeiro jogador a alcancar e fixar o topo de tres pistas da montanha e o vencedor!\n");
 
-    MostrarSubMenu(option);
+    return MostrarSubMenu();
 }
 

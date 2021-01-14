@@ -5,15 +5,15 @@
 void MostarMenu(int *option);
 
 // Mostra o submenu dentro da opção 3 - Mostrar descrição do jogo
-void MostrarSubMenu(int *option);
+int MostrarSubMenu();
 
 // Mostra o submenu dentro da opção 1 - Novo jogo
-int MostrarSubMenuJogo(int *option);
+int MostrarSubMenuJogo();
 
 // Mostra o titulo no jogo dentro da opção 1 - Novo jogo
 void MostrarTituloJogo();
 
 // Mostra a descrição do jogo. opção 3 - Descricao do Jogo
-void MostrarDescricao(int *option);
+int MostrarDescricao();
 
 #endif
