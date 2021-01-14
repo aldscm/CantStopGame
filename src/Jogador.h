@@ -3,7 +3,6 @@
 
 #include "Lab.h"
 #include "Constants.h"
-//#include "Funcoes.h"
 
 typedef struct jogador
 {

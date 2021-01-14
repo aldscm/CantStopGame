@@ -10,9 +10,6 @@ void NovoJogador(Jogador *jogador)
     jogador->turno = NAO_E_MEU_TURNO;
     jogador->tipo = JOGADOR_TIPO_HUMANO;
 
-   	jogador->percurso = (int*)malloc(sizeof(int));
-    jogador->percursoAvancado = (int*)malloc(sizeof(int));
-
 	// Inicializa os percursos a zero
     InicializarPercursos(jogador);
 
@@ -28,9 +25,6 @@ void NovoBot(Jogador *bot)
     bot->turno = NAO_E_MEU_TURNO;
     bot->tipo = JOGADOR_TIPO_BOT;
 
-    bot->percurso = (int*)malloc(sizeof(int));
-    bot->percursoAvancado = (int*)malloc(sizeof(int));
-
 	// Inicializa os percursos a zero
     InicializarPercursos(bot);
 
@@ -41,10 +35,13 @@ void NovoBot(Jogador *bot)
 void InicializarPercursos(Jogador *jogador)
 {
     int i;
+    
+    jogador->percurso = (int*)malloc(sizeof(int));
+    jogador->percursoAvancado = (int*)malloc(sizeof(int));
 
     for (i = 0; i< ARRAY_PERCURSO_SIZE; i++)
 	{
-		jogador->percurso = (int*) realloc(jogador->percurso, (i + 1)* sizeof(int));
+		jogador->percurso = (int*)realloc(jogador->percurso, (i + 1)* sizeof(int));
 		jogador->percurso[i] = 0;
 
 		jogador->percursoAvancado = (int*) realloc(jogador->percursoAvancado, (i + 1)* sizeof(int));

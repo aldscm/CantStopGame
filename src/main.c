@@ -5,8 +5,8 @@
 
 #include "Constants.h"
 #include "Interface.h"
-#include "Jogador.h"
 #include "Funcoes.h"
+#include "Jogador.h"
 #include "Jogo.h"
 
 int main() {
@@ -37,10 +37,9 @@ int main() {
             // Carregar jogo
             case 2:
             {
-            	
-                
+                CarregarJogo(&jogador, &bot);
+                // TODO: Adicionar o restante código
                 system("pause");
-                
                 break;
             }
             // Descrição do jogo
